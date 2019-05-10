@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask import render_template
 from pymongo import MongoClient
 from bson.json_util import dumps
 
@@ -15,11 +16,13 @@ def main():
     collection = db.mahasiswa
     cursor = collection.find({})
 
-    for mahasiswa in cursor:
-        print(dumps(mahasiswa))
-        print("\n")
+    result = ""
 
-    return "Sukses Mengambil Data"
+    for mahasiswa in cursor:
+        result += dumps(mahasiswa)
+        result += "\n"
+
+    return render_template("index.html", data=result)
 
 
 if __name__ == "__main__":
