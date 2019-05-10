@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from flask import render_template
 from pymongo import MongoClient
-from bson.json_util import dumps
+# from bson.json_util import dumps
 
 app = Flask(__name__)
 
@@ -19,8 +19,9 @@ def main():
     result = ""
 
     for mahasiswa in cursor:
-        result += dumps(mahasiswa)
-        result += "\n"
+        result += mahasiswa["nama"]
+        result += mahasiswa["nim"]
+        result += "<br />"
 
     return render_template("index.html", data=result)
 
