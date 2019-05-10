@@ -20,8 +20,10 @@ def main():
 
     for mahasiswa in cursor:
         result += mahasiswa["nama"]
+        result =+ "\n"
         result += mahasiswa["nim"]
-        result += "<br />"
+        result += "\n"
+        result += "\n"
 
     return render_template("index.html", data=result)
 
