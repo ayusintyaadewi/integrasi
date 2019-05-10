@@ -1,13 +1,25 @@
 import os
-import get_mahasiswa
 from flask import Flask
+from pymongo import MongoClient
+from bson.json_util import dumps
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def main():
-    return get_mahasiswa
+    client = MongoClient(
+        "mongodb+srv://ayusintyaadewi:sintya2203*@cluster0-mdyzg.gcp.mongodb.net/test?retryWrites=true")
+
+    db = client.mahasiswa
+    collection = db.mahasiswa
+    cursor = collection.find({})
+
+    for mahasiswa in cursor:
+        print(dumps(mahasiswa))
+        print("\n")
+
+    return "Sukses Mengambil Data"
 
 
 if __name__ == "__main__":
