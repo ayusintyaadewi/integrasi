@@ -20,7 +20,7 @@ def main():
 
     for mahasiswa in cursor:
         result += mahasiswa["nama"]
-        result =+ "\n"
+        result += "\n"
         result += mahasiswa["nim"]
         result += "\n"
         result += "\n"
